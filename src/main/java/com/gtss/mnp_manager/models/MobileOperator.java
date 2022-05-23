@@ -28,7 +28,7 @@ public class MobileOperator {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
-    private int id;
+    private Short id;
 
     @NonNull
     @Column(name = "operator_name", nullable = false, length = 30)
