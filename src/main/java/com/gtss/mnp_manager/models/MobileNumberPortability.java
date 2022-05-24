@@ -26,9 +26,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Entity(name = "MobileNumberPortabilityRequest")
-@Table(name = "mobile_number_portability_request")
-public class MobileNumberPortabilityRequest {
+@Entity(name = "MobileNumberPortability")
+@Table(name = "mobile_number_portability")
+public class MobileNumberPortability {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
