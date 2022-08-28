@@ -27,20 +27,28 @@ public class OrganizationHeaderValidatorTest {
     }
 
     @ParameterizedTest
-    @CsvSource({",false", "vodafone,true", "Vodafone,false", "XYZ,false"})
+    @CsvSource({",false", "'',false", "' ',false", "operatorA,true",
+            "OperatorA,false", "XYZ,false"})
     void itShouldValidateOrganizationHeader(String organizationHeader,
             Boolean expected) {
 
-        // Given
         given(mobileOperatorRepo
-                .findMobileOperatorByOrganizationHeader("vodafone"))
+                .findByOrganizationHeader("operatorA"))
                         .willReturn(Optional.of(
-                                new MobileOperator("Vodafone", "vodafone")));
+                                new MobileOperator("OperatorA", "operatorA")));
 
-        // When
         Boolean isValid = underTest.validate(organizationHeader);
 
-        // Then
+        assertThat(isValid).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @CsvSource({",false", "'',false", "' ',false", "operatorA,true"})
+    void itShouldCheckOrganizationHeaderExists(String organizationHeader,
+            Boolean expected) {
+
+        Boolean isValid = underTest.isHeaderExists(organizationHeader);
+
         assertThat(isValid).isEqualTo(expected);
     }
 

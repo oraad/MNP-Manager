@@ -14,34 +14,64 @@ public class MobileOperatorRepoTest {
     private MobileOperatorRepo underTest;
 
     @Test
-    void itShouldFindOperatorByOrganizationHeader() {
-        // Given
-        String organizationHeader = "vodafone";
-        MobileOperator mobileOperator =
-                new MobileOperator("Vodafone", organizationHeader);
+    void itShouldFindByOrganizationHeader() {
 
-        // When
+        MobileOperator mobileOperator =
+                new MobileOperator("OperatorA", "operatorA");
+
+        String organizationHeader = mobileOperator.getOrganizationHeader();
+
         underTest.save(mobileOperator);
 
-        Optional<MobileOperator> optionalMobileOperator =
-                underTest.findMobileOperatorByOrganizationHeader(organizationHeader);
+        Optional<MobileOperator> optionalMobileOperator = underTest
+                .findByOrganizationHeader(organizationHeader);
 
-        // Then
-        assertThat(optionalMobileOperator).isPresent().hasValueSatisfying(c -> {
-            assertThat(c).usingRecursiveComparison().isEqualTo(mobileOperator);
-        });
+        assertThat(optionalMobileOperator).isPresent()
+                .hasValueSatisfying(foundMobileOperator -> {
+                    assertThat(foundMobileOperator).usingRecursiveComparison()
+                            .isEqualTo(mobileOperator);
+                });
     }
 
     @Test
-    void itShouldNotFindOperatorByOrganizationHeaderWhenDoesNotExists() {
-        // Given
-        String organizationHeader = "vodafone";
+    void itShouldNotFindByOrganizationHeaderWhenDoesNotExists() {
 
-        // When
+        String organizationHeader = "operatorA";
+
+        Optional<MobileOperator> optionalMobileOperator = underTest
+                .findByOrganizationHeader(organizationHeader);
+
+        assertThat(optionalMobileOperator).isNotPresent();
+    }
+
+    @Test
+    void itShouldFindByOperatorName() {
+
+        MobileOperator mobileOperator =
+                new MobileOperator("OperatorA", "operatorA");
+
+        String operatorName = mobileOperator.getOperatorName();
+
+        underTest.save(mobileOperator);
+
+        Optional<MobileOperator> optionalMobileOperator = underTest
+                .findByOperatorName(operatorName);
+
+        assertThat(optionalMobileOperator).isPresent()
+                .hasValueSatisfying(foundMobileOperator -> {
+                    assertThat(foundMobileOperator).usingRecursiveComparison()
+                            .isEqualTo(mobileOperator);
+                });
+    }
+
+    @Test
+    void itShouldNotFindByOperatorNameWhenDoesNotExists() {
+
+        String operatorName = "OperatorA";
+
         Optional<MobileOperator> optionalMobileOperator =
-                underTest.findMobileOperatorByOrganizationHeader(organizationHeader);
+                underTest.findByOperatorName(operatorName);
 
-        // Then
         assertThat(optionalMobileOperator).isNotPresent();
     }
 }

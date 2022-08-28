@@ -9,8 +9,22 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MobileOperatorRepo
         extends CrudRepository<MobileOperator, Short> {
-
-    @Query("SELECT mobileOperator FROM MobileOperator mobileOperator WHERE organizationHeader = ?1")
-    Optional<MobileOperator> findMobileOperatorByOrganizationHeader(
+    /**
+     * Get Mobile operator by organization header
+     * 
+     * @param organizationHeader
+     */
+    @Query("SELECT mobileOperator FROM MobileOperator mobileOperator "
+            + "WHERE mobileOperator.organizationHeader = ?1")
+    Optional<MobileOperator> findByOrganizationHeader(
             String organizationHeader);
+
+    /**
+     * Get Mobile operator by operator name
+     * 
+     * @param operatorName
+     */
+    @Query("SELECT mobileOperator FROM MobileOperator mobileOperator "
+            + "WHERE mobileOperator.operatorName = ?1")
+    Optional<MobileOperator> findByOperatorName(String operatorName);
 }

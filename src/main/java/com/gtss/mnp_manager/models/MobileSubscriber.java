@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,8 +22,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Entity(name = "MobileSubsriber")
-@Table(name = "mobile_subsriber")
+@Entity(name = "MobileSubscriber")
+@Table(name = "mobile_subscriber")
 public class MobileSubscriber {
 
     @Id
@@ -37,6 +36,15 @@ public class MobileSubscriber {
     private String mobileNumber;
 
     @OneToOne(mappedBy = "mobileSubscriber", orphanRemoval = true,
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+            cascade = {CascadeType.ALL})
     private MobileSubscriberOperator mobileSubscriberOperator;
+
+    public MobileOperator getMobileOperator() {
+        return this.mobileSubscriberOperator.getCurrentMobileOperator();
+    }
+
+    public void setMobileOperator(MobileOperator mobileOperator) {
+        this.mobileSubscriberOperator.setCurrentMobileOperator(mobileOperator);
+    }
+
 }

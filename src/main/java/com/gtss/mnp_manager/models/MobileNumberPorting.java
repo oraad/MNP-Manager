@@ -26,9 +26,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Entity(name = "MobileNumberPortability")
-@Table(name = "mobile_number_portability")
-public class MobileNumberPortability {
+@Entity(name = "MobileNumberPorting")
+@Table(name = "mobile_number_porting")
+public class MobileNumberPorting {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,9 +67,5 @@ public class MobileNumberPortability {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false,
             columnDefinition = "ENUM('UNKNOWN', 'PENDING', 'ACCEPTED', 'REJECTED', 'CANCELED')")
-    private RequestStatus status;
-
-    public enum RequestStatus {
-        UNKNOWN, PENDING, ACCEPTED, REJECTED, CANCELED
-    }
+    private PortingStatus status;
 }

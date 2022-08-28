@@ -1,6 +1,5 @@
 package com.gtss.mnp_manager.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -25,7 +24,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "mobileSubscriber")
 @Entity(name = "MobileSubscriberOperator")
 @Table(name = "mobile_subscriber_operator")
 public class MobileSubscriberOperator {
@@ -36,21 +35,21 @@ public class MobileSubscriberOperator {
     private Long id;
 
     @NonNull
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToOne
     @JoinColumn(name = "mobile_subscriber_id", referencedColumnName = "id",
             nullable = false,
             foreignKey = @ForeignKey(name = "mobile_subscriber_id_fk"))
     private MobileSubscriber mobileSubscriber;
 
     @NonNull
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @ManyToOne
     @JoinColumn(name = "current_operator_id", referencedColumnName = "id",
             nullable = false,
             foreignKey = @ForeignKey(name = "current_operator_id_fk"))
     private MobileOperator currentMobileOperator;
 
     @NonNull
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @ManyToOne
     @JoinColumn(name = "original_operator_id", referencedColumnName = "id",
             nullable = false,
             foreignKey = @ForeignKey(name = "original_operator_id_fk"))

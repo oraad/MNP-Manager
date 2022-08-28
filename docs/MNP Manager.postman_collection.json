@@ -1,0 +1,346 @@
+{
+	"info": {
+		"_postman_id": "a18dee63-9b40-4f85-8832-a365dd12b202",
+		"name": "MNP Manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21502312"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login by credential",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"operatorName\": \"{{OperatorName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{AuthBaseURL}}/login",
+							"host": [
+								"{{AuthBaseURL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login by header",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "organization",
+								"value": "{{RecipientOrganizationHeader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{AuthBaseURL}}/",
+							"host": [
+								"{{AuthBaseURL}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mobile Number Porting",
+			"item": [
+				{
+					"name": "Get All Mobile Number Porting",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "organization",
+								"value": "{{DonorOrganizationHeader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{MNPBaseURL}}/?page=2&size=5&sort=id,desc",
+							"host": [
+								"{{MNPBaseURL}}"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"description": "Page Index"
+								},
+								{
+									"key": "size",
+									"value": "5",
+									"description": "Page Size"
+								},
+								{
+									"key": "sort",
+									"value": "id,desc",
+									"description": "Sorting"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pending Mobile Number Porting",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "organization",
+								"value": "{{DonorOrganizationHeader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{MNPBaseURL}}/pending",
+							"host": [
+								"{{MNPBaseURL}}"
+							],
+							"path": [
+								"pending"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page Index",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "5",
+									"description": "Page Size",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "id,desc",
+									"description": "Sorting",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Accepted Mobile Number Porting",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "organization",
+								"value": "{{DonorOrganizationHeader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{MNPBaseURL}}/accepted",
+							"host": [
+								"{{MNPBaseURL}}"
+							],
+							"path": [
+								"accepted"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page Index",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "5",
+									"description": "Page Size",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "id,desc",
+									"description": "Sorting",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Mobile Number Porting Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "organization",
+								"value": "{{RecipientOrganizationHeader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{MNPBaseURL}}/01200000100",
+							"host": [
+								"{{MNPBaseURL}}"
+							],
+							"path": [
+								"01200000100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Mobile Number Porting",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "organization",
+								"value": "{{RecipientOrganizationHeader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{MNPBaseURL}}/01200000100",
+							"host": [
+								"{{MNPBaseURL}}"
+							],
+							"path": [
+								"01200000100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept Mobile Number Porting",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "organization",
+								"value": "{{DonorOrganizationHeader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{MNPBaseURL}}/01200000100/accept",
+							"host": [
+								"{{MNPBaseURL}}"
+							],
+							"path": [
+								"01200000100",
+								"accept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reject Mobile Number Porting",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "organization",
+								"value": "{{DonorOrganizationHeader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{MNPBaseURL}}/01200000100/reject",
+							"host": [
+								"{{MNPBaseURL}}"
+							],
+							"path": [
+								"01200000100",
+								"reject"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "HostURL",
+			"value": "http://127.0.0.1:8080",
+			"type": "string"
+		},
+		{
+			"key": "BaseURL",
+			"value": "{{HostURL}}/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "AuthBaseURL",
+			"value": "{{BaseURL}}/auth",
+			"type": "string"
+		},
+		{
+			"key": "MNPBaseURL",
+			"value": "{{BaseURL}}/mnp",
+			"type": "string"
+		},
+		{
+			"key": "DonorOrganizationHeader",
+			"value": "vodafone",
+			"type": "string"
+		},
+		{
+			"key": "RecipientOrganizationHeader",
+			"value": "etisalat",
+			"type": "string"
+		},
+		{
+			"key": "OperatorName",
+			"value": "Vodafone",
+			"type": "string"
+		}
+	]
+}
